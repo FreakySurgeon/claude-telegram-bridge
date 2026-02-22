@@ -253,8 +253,9 @@ Bot: Permission denied:
      [Allow & Retry] [Deny]
 ```
 
-- **Allow & Retry** -- Grants permission and retries the action
+- **Allow & Retry** -- Grants the specific tools that were denied and retries
 - **Deny** -- Cancels the request
+- **Continue with bypass** -- Retries with `--dangerously-skip-permissions` (only shown when resuming a session that was originally started in bypass mode)
 
 Supported permission types: `Write`, `Edit`, `Read`, `Bash`
 
