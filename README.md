@@ -36,7 +36,22 @@ Control [Claude Code](https://docs.anthropic.com/en/docs/claude-code) remotely v
    ```
 4. Find `"chat":{"id":` in the response -- that number is your chat ID
 
-### 3. Install
+### 3. Set Up a Telegram Group with Topics
+
+The bot works best in a **group with forum topics enabled** — each conversation gets its own thread.
+
+1. Create a new Telegram group (or use an existing one)
+2. Go to **Group Settings > Topics** and enable **Topics**
+3. Add your bot to the group and **make it admin** (it needs permission to create/edit topics)
+4. Get the **group chat ID** (it will be negative, e.g., `-1001234567890`):
+   - Send a message in the group
+   - Check `https://api.telegram.org/botYOUR_BOT_TOKEN/getUpdates`
+   - Use the `chat.id` from the group message
+5. Use this group chat ID as your `TELEGRAM_CHAT_ID` in `.env`
+
+> **Note:** The bot also works in direct messages (without topics), but you lose the threaded conversation history.
+
+### 4. Install
 
 ```bash
 # Clone the repo
@@ -47,7 +62,7 @@ cd claude-telegram-bridge
 uv sync
 ```
 
-### 4. Configure
+### 5. Configure
 
 ```bash
 cp .env.example .env
@@ -62,7 +77,7 @@ CLAUDE_WORKING_DIR=/path/to/your/project
 MODE=polling
 ```
 
-### 5. Run
+### 6. Run
 
 ```bash
 uv run uvicorn claude_telegram.main:app --host 0.0.0.0 --port 8000
